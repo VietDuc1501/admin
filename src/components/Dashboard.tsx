@@ -5,16 +5,16 @@ import '../styles/page/Dashboard.css';
 const Dashboard: React.FC = () => {
     return (
         <div className="dashboard">
-            <h1>Dashboard</h1>
+            <h1 className="dashboard-title">🎓 Dashboard</h1>
             <nav className="dashboard-nav">
                 <Link to="/" className="dashboard-link">
-                    Home
+                    <span role="img" aria-label="home">🏠</span> Home
                 </Link>
                 <Link to="/CourseManagement" className="dashboard-link">
-                    Quản Lý Khóa Học
+                    <span role="img" aria-label="course">📚</span> Quản Lý Khóa Học
                 </Link>
                 <Link to="/UserManagement" className="dashboard-link">
-                    Quản Lý Học Viên
+                    <span role="img" aria-label="user">👨‍🎓</span> Quản Lý Học Viên
                 </Link>
             </nav>
         </div>

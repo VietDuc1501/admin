@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import User from "../../types/User";
 import getAllUser from "../../hooks/user/userList";
-import getAllRoles from "../../hooks/RoleUser"; // Thêm dòng này
-import Role from "../../types/Role"; // Thêm dòng này
+import getAllRoles from "../../hooks/role/RoleUser";
+import Role from "../../types/Role";
 
 interface UserListProps {
-    users ?: User[];
+    users?: User[];
     onDelete?: (id: string) => void;
 }
 
 const UserList: React.FC<UserListProps> = ({ onDelete }) => {
     const [users, setUsers] = useState<User[]>([]);
     const [roles, setRoles] = useState<Role[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -27,10 +29,8 @@ const UserList: React.FC<UserListProps> = ({ onDelete }) => {
         fetchRoles();
     }, []);
 
-    // Hàm lấy roleName từ roleId
     const getRoleName = (roleId: string) => {
         const role = roles.find(r => r.id === roleId);
-        // Đổi role.roleName thành role.name nếu API trả về name
         return role ? (role.roleName || role.name || roleId) : roleId;
     };
 
@@ -45,9 +45,17 @@ const UserList: React.FC<UserListProps> = ({ onDelete }) => {
                         <p><strong>Status:</strong> {user.status}</p>
                         <p><strong>Role:</strong> {getRoleName(user.roleId)}</p>
                         {onDelete && (
-                            <button className="delete-btn" onClick={() => onDelete(user.id)}>
-                                Delete
-                            </button>
+                            <>
+                                <button
+                                    className="edit-btn"
+                                    onClick={() => navigate(`/edit-user/${user.id}`)}
+                                >
+                                    Edit
+                                </button>
+                                <button className="delete-btn" onClick={() => onDelete(user.id)}>
+                                    Delete
+                                </button>
+                            </>
                         )}
                     </li>
                 ))}

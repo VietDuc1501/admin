@@ -4,7 +4,7 @@ import Category from '../../types/Category';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchCourseById, fetchAllCategories, updateCourseById } from '../../hooks/course/editCourse';
 import Course from '../../types/Course';
-import categoriesCourse from "../../hooks/categoriesCourse";
+import categoriesCourse from "../../hooks/category/categoriesCourse";
 
 const EditCourse: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -18,8 +18,8 @@ const EditCourse: React.FC = () => {
     const [imageUrl, setImageUrl] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
-   useEffect(() => {
-    const fetchCategories = async () => {
+    useEffect(() => {
+        const fetchCategories = async () => {
             const data = await categoriesCourse();
             setCategories(data);
             console.log("Categories:", data); // Thêm dòng này
@@ -114,15 +114,13 @@ const EditCourse: React.FC = () => {
                 <div className="form-group">
                     <label htmlFor="course-status">Status:</label>
                     <select
-                        id="course-category"
-                        value={categoryId}
-                        onChange={e => setCategoryId(e.target.value)}
+                        id="course-status"
+                        value={courseStatus}
+                        onChange={e => setCourseStatus(e.target.value as 'ACTIVE' | 'INACTIVE')}
                         required
                     >
-                        <option value="">-- Select Category --</option>
-                        {categories.map(cat => (
-                            <option key={cat.id} value={cat.id}>{cat.categoryName}</option>
-                        ))}
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
                     </select>
                 </div>
                 <div className="form-group">

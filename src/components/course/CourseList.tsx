@@ -5,7 +5,8 @@ import Course from '../../types/Course';
 import deleteCourseById from '../../hooks/course/deleteCourse';
 import DeleteCourse from './DeleteCourse';
 import getAllCourses from '../../hooks/course/courseList';
-
+import getAllCategories from '../../hooks/category/categoriesCourse';
+import Category from '../../types/Category';
 interface CourseListProps {
     courses: Course[];
     onDelete?: (courseId: string) => void;
@@ -18,7 +19,7 @@ const CourseList: React.FC<CourseListProps> = ({
     const [courses, setCourses] = useState<Course[]>([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
-
+    const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
     useEffect(() => {
         const fetchCourses = async () => {
             const data = await getAllCourses();
@@ -26,12 +27,28 @@ const CourseList: React.FC<CourseListProps> = ({
         };
         fetchCourses();
     }, []);
-
+    useEffect(() => {
+        const fetchData = async () => {
+            const coursesData = await getAllCourses();
+            setCourses(coursesData);
+            const categoriesData = await getAllCategories();
+            console.log('categoriesData:', categoriesData); // kiểm tra dữ liệu trả về
+            const mappedCategories = categoriesData.map((cat: Category) => ({
+                id: cat.id,
+                name: (cat as any).name || (cat as any).categoryName || ''
+            }));
+            console.log('mappedCategories:', mappedCategories); // kiểm tra dữ liệu đã map
+            setCategories(mappedCategories);
+        };
+        fetchData();
+    }, []);
     // Chỉ chuyển trang, không fetch trước khi edit
     const handleEdit = (courseId: string) => {
         navigate(`/EditCourse/${courseId}`);
     };
-
+    const handleViewLessons = (courseId: string) => {
+        navigate(`/CourseLessons/${courseId}`);
+    };
     const handleDeleteCourse = async (id: string) => {
         const response = await deleteCourseById(id);
         if (response.ok) {
@@ -56,21 +73,28 @@ const CourseList: React.FC<CourseListProps> = ({
 
     return (
         <div className="task-list">
-            <h2 className="task-list-title">📚 My Course List</h2>
             <ul className="task-items">
-                {courses.map((course) => (
-                    <li key={course.id} className="task-item">
-                        <h3>{course.name}</h3>
-                        <p><strong>Description:</strong> {course.description}</p>
-                        <p><strong>Status:</strong> {course.courseStatus}</p>
-                        <p><strong>Category ID:</strong> {course.categoryId}</p>
-                        {course.imageUrl && (
-                            <img src={course.imageUrl} alt={course.name} style={{ maxWidth: 120, display: 'block', margin: '8px 0' }} />
-                        )}
-                        <button className="edit-btn" onClick={() => handleEdit(course.id)}>Edit</button>
-                        <button className="delete-btn" onClick={() => openDeleteModal(course.id)}>Delete</button>
-                    </li>
-                ))}
+                {courses.map((course) => {
+                    const category = categories.find(c => c.id === course.categoryId);
+                    return (
+                        <li key={course.id} className="task-item">
+                            <h3>{course.name}</h3>
+                            <p><strong>Description:</strong> {course.description}</p>
+                            <p><strong>Status:</strong> {course.courseStatus}</p>
+                            <p>
+                                <strong>Category:</strong> {category ? category.name : course.categoryId}
+                            </p>
+                            {course.imageUrl && (
+                                <img src={course.imageUrl} alt={course.name} style={{ maxWidth: 120, display: 'block', margin: '8px 0' }} />
+                            )}
+                            <div className="task-item-buttons">
+                                <button className="edit-btn" onClick={() => handleEdit(course.id)}>Edit</button>
+                                <button className="delete-btn" onClick={() => openDeleteModal(course.id)}>Delete</button>
+                                <button className="edit-btn lesson-btn" onClick={() => handleViewLessons(course.id)}>Lessons</button>
+                            </div>
+                        </li>
+                    );
+                })}
             </ul>
             {showDeleteModal && selectedCourseId && (
                 <DeleteCourse

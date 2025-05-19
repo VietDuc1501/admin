@@ -1,17 +1,19 @@
 .task-list {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    background: #f8fafc;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
     padding: 32px 24px;
-    margin: 32px auto;
     max-width: 800px;
+    margin: 40px auto;
 }
 
 .task-list-title {
-    font-size: 1.7rem;
-    color: #2563eb;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
     margin-bottom: 24px;
     text-align: center;
+    letter-spacing: 1px;
 }
 
 .task-items {
@@ -21,66 +23,99 @@
 }
 
 .task-item {
-    background: #f7fafd;
-    border: 1px solid #e3e7ed;
-    border-radius: 10px;
-    margin-bottom: 18px;
-    padding: 20px 18px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(30, 41, 59, 0.06);
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    transition: box-shadow 0.2s;
+    gap: 10px;
+    position: relative;
 }
 
 .task-item:hover {
-    box-shadow: 0 2px 12px rgba(37,99,235,0.08);
+    box-shadow: 0 6px 24px rgba(30, 41, 59, 0.12);
 }
 
 .task-item h3 {
-    margin: 0 0 6px 0;
-    color: #1e293b;
-    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    color: #0f172a;
+    font-weight: 600;
+    align-items: flex-start;
+}
+
+.task-item-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .task-item p {
-    margin: 0;
-    color: #475569;
+    margin: 0 0 4px 0;
+    color: #334155;
     font-size: 1rem;
 }
 
 .task-item img {
-    border-radius: 6px;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin: 10px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .edit-btn,
 .delete-btn {
-    margin-top: 10px;
-    margin-right: 10px;
-    padding: 7px 18px;
+    width: auto;
+    min-width: 100px;
+    max-width: 180px;
+    display: inline-block;
+    padding: 8px 20px;
     border: none;
     border-radius: 6px;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.18s, color 0.18s;
+    margin-right: 0;
 }
 
 .edit-btn {
-    background: #3b82f6;
+    background: #38bdf8;
     color: #fff;
 }
 
 .edit-btn:hover {
-    background: #2563eb;
+    background: #0ea5e9;
 }
 
 .delete-btn {
-    background: #e74c3c;
+    background: #f87171;
     color: #fff;
 }
 
 .delete-btn:hover {
-    background: #c0392b;
+    background: #dc2626;
+}
+
+.lesson-btn {
+    background: #4ade80;
+    color: #fff;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    .task-list {
+        padding: 16px 4px;
+    }
+
+    .task-item {
+        padding: 14px;
+    }
+
+    .task-list-title {
+        font-size: 1.3rem;
+    }
 }
