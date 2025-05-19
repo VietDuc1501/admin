@@ -18,7 +18,7 @@ const useRegister = () => {
 
         setError("");
         try {
-            const registerUrl = `${import.meta.env.VITE_API_URL}/register`;
+            const registerUrl = `${import.meta.env.VITE_API_URL}/auth/register`;
             const response = await fetch(registerUrl, {
                 method: "POST",
                 headers: {

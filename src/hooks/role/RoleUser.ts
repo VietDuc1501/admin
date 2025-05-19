@@ -1,4 +1,4 @@
-import Role from '../types/Role';
+import Role from '../../types/Role';
 
 const getAllRoles = async (): Promise<Role[]> => {
     try {

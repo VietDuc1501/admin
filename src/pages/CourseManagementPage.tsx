@@ -8,7 +8,7 @@ import Course from "../types/Course";
 
 const CourseManagementPage: React.FC = () => {
     const navigate = useNavigate();
-    const { courses: initialCourses} = useCourse();
+    const { courses: initialCourses } = useCourse();
     const [courses, setCourses] = useState<Course[]>([]);
 
     // Kiểm tra đăng nhập
@@ -34,7 +34,7 @@ const CourseManagementPage: React.FC = () => {
     return (
         <div className="course-management-page">
             <div className="course-header">
-                <h1>Course Management</h1>
+                <h1>📚 Course Management</h1>
             </div>
             <button className="add-course-button" onClick={handleAddCourseClick}>+ Add New Course</button>
             <CourseList courses={courses} onDelete={handleDelete} />

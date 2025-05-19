@@ -3,8 +3,8 @@ import '../../styles/course/AddCourse.css';
 import Category from '../../types/Category';
 import { useNavigate } from 'react-router-dom';
 // You should have a createCourseApi and categoriesCourse hook for courses
-import createCourseApi from '../../hooks/course/createCourse'; 
-import categoriesCourse from '../../hooks/categoriesCourse';
+import createCourseApi from '../../hooks/course/createCourse';
+import categoriesCourse from '../../hooks/category/categoriesCourse';
 
 const AddCourse: React.FC = () => {
     const [name, setName] = useState('');
