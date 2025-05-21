@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/user/DeleteUser.css";
 
 interface DeleteUserProps {
   onConfirm: () => void;
@@ -9,7 +10,8 @@ const DeleteUser: React.FC<DeleteUserProps> = ({ onConfirm, onCancel }) => {
   return (
     <div className="delete-modal">
       <div className="delete-modal-content">
-        <h3>Are you sure you want to delete this user?</h3>
+        <h3 className="delete-title">Confirm Delete</h3>
+        <p>Are you sure you want to delete this user?</p>
         <div className="delete-modal-actions">
           <button className="confirm-btn" onClick={onConfirm}>
             Yes, Delete

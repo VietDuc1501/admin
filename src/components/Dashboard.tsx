@@ -8,19 +8,32 @@ const Dashboard: React.FC = () => {
       <h1 className="dashboard-title">🎓 Dashboard</h1>
       <nav className="dashboard-nav">
         <Link to="/" className="dashboard-link">
-          <span role="img" aria-label="home">🏠</span> Home
+          <span role="img" aria-label="home">
+            🏠
+          </span>{" "}
+          Home
         </Link>
 
         <Link to="/CourseManagement" className="dashboard-link">
-          <span role="img" aria-label="course">📚</span> Quản Lý Khóa Học
+          <span role="img" aria-label="course">
+            📚
+          </span>{" "}
+          Quản Lý Khóa Học
         </Link>
 
         <Link to="/UserManagement" className="dashboard-link">
-          <span role="img" aria-label="user">👨‍🎓</span> Quản Lý Học Viên
+          <span role="img" aria-label="user">
+            👨‍🎓
+          </span>{" "}
+          Quản Lý Học Viên
         </Link>
 
+        {/* ✅ Sửa đường dẫn đúng theo AppRoutes */}
         <Link to="/CategoryManagement" className="dashboard-link">
-          <span role="img" aria-label="category">🗂️</span> Quản Lý Danh Mục
+          <span role="img" aria-label="category">
+            🗂️
+          </span>{" "}
+          Quản Lý Danh Mục
         </Link>
       </nav>
     </div>

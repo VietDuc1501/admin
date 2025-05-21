@@ -1,6 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// Layout
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Dashboard from "./components/Dashboard";
+
 // Pages
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -12,17 +17,12 @@ import CategoryManagement from "./pages/CategoryManagement";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
 
-// Layout
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import Dashboard from "./components/Dashboard";
-
-// Course
+// Course Management
 import AddCourse from "./components/course/AddCourse";
 import EditCourse from "./components/course/EditCourse";
 import CourseLessons from "./components/lesson/CourseLessons";
 
-// User
+// User Management
 import AddUser from "./components/user/AddUser";
 import EditUser from "./components/user/EditUser";
 
@@ -33,38 +33,50 @@ const AppRoutes: React.FC = () => {
     <Router>
       <div className="app-container">
         <Header />
+
         <div className="main-content">
           <div className="sidebar">
             <Dashboard />
           </div>
+
           <div className="page-content">
             <Routes>
-              {/* Trang chính */}
+              {/* Home Page */}
               <Route path="/" element={<HomePage />} />
 
-              {/* Quản lý khóa học */}
-              <Route path="/CourseManagement" element={<CourseManagementPage />} />
+              {/* Course Management */}
+              <Route
+                path="/CourseManagement"
+                element={<CourseManagementPage />}
+              />
               <Route path="/AddCourse" element={<AddCourse />} />
               <Route path="/EditCourse/:id" element={<EditCourse />} />
-              <Route path="/CourseLessons/:courseId" element={<CourseLessons />} />
+              <Route
+                path="/CourseLessons/:courseId"
+                element={<CourseLessons />}
+              />
 
-              {/* Quản lý học viên */}
+              {/* User Management */}
               <Route path="/UserManagement" element={<UserManagementPage />} />
               <Route path="/AddUser" element={<AddUser />} />
               <Route path="/edit-user/:userId" element={<EditUser />} />
 
-              {/* Quản lý danh mục */}
-              <Route path="/CategoryManagement" element={<CategoryManagement />} />
+              {/* Category Management */}
+              <Route
+                path="/CategoryManagement"
+                element={<CategoryManagement />}
+              />
 
-              {/* Xác thực */}
+              {/* Authentication */}
               <Route path="/login" element={<LoginForm />} />
               <Route path="/signup" element={<RegisterForm />} />
 
-              {/* Trang lỗi */}
+              {/* 404 Fallback */}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
         </div>
+
         <Footer />
       </div>
     </Router>
