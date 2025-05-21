@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
             <h3>👥 User Management</h3>
             <p>View, add, and manage platform users.</p>
           </Link>
-          <Link to="/Category" className="feature-card">
+          <Link to="/CategoryManagement" className="feature-card">
             <h3>🏷️ Category Management</h3>
             <p>Add, edit, and delete course categories.</p>
           </Link>
