@@ -8,7 +8,7 @@ const useCourse = () => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch("/api/courses"); // Đổi endpoint nếu cần
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/courses`); // Đổi endpoint nếu cần
                 if (!response.ok) {
                     throw new Error("Failed to fetch courses");
                 }
