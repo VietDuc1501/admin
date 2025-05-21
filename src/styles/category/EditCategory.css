@@ -1,0 +1,42 @@
+.edit-category-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.edit-category-form input[type="text"] {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.edit-category-form button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: background 0.2s;
+}
+
+.edit-category-form button[type="submit"] {
+  background: #1976d2;
+  color: #fff;
+}
+
+.edit-category-form button[type="submit"]:hover {
+  background: #0d47a1;
+}
+
+.edit-category-form button[type="button"] {
+  background: #bdbdbd;
+  color: #333;
+}
+
+.edit-category-form button[type="button"]:hover {
+  background: #757575;
+}
