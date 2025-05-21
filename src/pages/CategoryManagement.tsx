@@ -4,7 +4,7 @@ import getAllCategories from "../hooks/category/categoriesCourse";
 import deleteCategoryById from "../hooks/category/deleteCategory";
 import AddCategory from "../components/category/AddCategory";
 import { useNavigate } from "react-router-dom";
-import { Category } from "../types/Category";
+import Category from "../types/Category";
 
 const CategoryManagement: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);

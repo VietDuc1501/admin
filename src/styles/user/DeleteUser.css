@@ -1,23 +1,39 @@
 .delete-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.4);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .delete-modal-content {
   background: #fff;
   padding: 32px 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   text-align: center;
   min-width: 320px;
+  max-width: 90vw;
+  animation: scaleUp 0.25s ease;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.delete-modal-content h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 16px;
 }
 
 .delete-modal-actions {
@@ -25,16 +41,18 @@
   display: flex;
   justify-content: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .confirm-btn {
   background: #e53935;
   color: #fff;
   border: none;
-  padding: 8px 20px;
-  border-radius: 4px;
+  padding: 10px 24px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
   transition: background 0.2s;
 }
 
@@ -46,10 +64,11 @@
   background: #bdbdbd;
   color: #333;
   border: none;
-  padding: 8px 20px;
-  border-radius: 4px;
+  padding: 10px 24px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
   transition: background 0.2s;
 }
 
