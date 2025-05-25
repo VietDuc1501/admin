@@ -1,20 +1,59 @@
+/* =============================
+   Category Management Container
+============================= */
 .category-management-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 40px auto;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+  padding: 36px 32px 32px 32px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-h2,
-h1 {
+/* Tiêu đề căn giữa */
+h1,
+h2 {
   text-align: center;
-  margin-bottom: 24px;
-  color: #333;
+  margin-bottom: 28px;
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-/* ADD CATEGORY FORM */
+/* =============================
+   Toggle Button
+============================= */
+.toggle-add-btn {
+  background: #1976d2;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.toggle-add-btn:hover {
+  background: #0d47a1;
+}
+
+.form-wrapper {
+  margin: 20px 0;
+}
+
+/* =============================
+   Add Category Form
+============================= */
 .add-category-form {
   display: flex;
   flex-wrap: wrap;
@@ -22,27 +61,39 @@ h1 {
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  background: #f9f9fb;
+  padding: 18px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.04);
 }
 
 .add-category-form input[type="text"],
 .add-category-form select {
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
   min-width: 180px;
   flex: 1;
+  background: #fafafa;
+  transition: border 0.3s ease;
+}
+
+.add-category-form input:focus,
+.add-category-form select:focus {
+  border-color: #1976d2;
+  outline: none;
 }
 
 .add-category-form button {
-  padding: 10px 20px;
+  padding: 10px 22px;
   background: #1976d2;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s;
   white-space: nowrap;
 }
 
@@ -50,60 +101,57 @@ h1 {
   background: #0d47a1;
 }
 
-/* CATEGORY LIST */
-.category-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* =============================
+   Category Table
+============================= */
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  background: #fafbfc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.04);
 }
 
-.category-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 12px;
+.category-table th,
+.category-table td {
+  padding: 14px 18px;
   border-bottom: 1px solid #eee;
-  align-items: center;
+  text-align: left;
 }
 
-.category-item:last-child {
+.category-table th {
+  background: #f5f7fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.category-table tr:last-child td {
   border-bottom: none;
 }
 
-.category-info {
-  flex: 1;
-}
-
-.category-info strong {
-  display: block;
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 4px;
-}
-
-.category-info p {
-  margin: 4px 0;
-  color: #555;
-}
-
-.category-info span {
-  font-size: 0.9rem;
-  color: #888;
-}
-
-/* ACTION BUTTON GROUP */
+/* =============================
+   Action Buttons
+============================= */
 .category-actions {
   display: flex;
   gap: 10px;
 }
 
-.edit-btn {
-  background: #ffb300;
-  color: #fff;
+.edit-btn,
+.delete-btn {
   padding: 6px 14px;
   border: none;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.edit-btn {
+  background: #ffb300;
+  color: #fff;
 }
 
 .edit-btn:hover {
@@ -113,30 +161,30 @@ h1 {
 .delete-btn {
   background: #e53935;
   color: #fff;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
 }
 
 .delete-btn:hover {
   background: #b71c1c;
 }
 
-/* EDIT MODE FORM */
+/* =============================
+   Inline Edit Form
+============================= */
 .edit-category-form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
+  align-items: center;
 }
 
-.edit-category-form input[type="text"] {
+.edit-category-form input[type="text"],
+.edit-category-form select {
   padding: 8px 12px;
   border: 1px solid #bbb;
   border-radius: 4px;
   flex: 1;
+  font-size: 14px;
 }
 
 .edit-category-form button {
@@ -145,6 +193,7 @@ h1 {
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .edit-category-form button[type="submit"] {
@@ -165,7 +214,9 @@ h1 {
   background: #757575;
 }
 
-/* MESSAGES */
+/* =============================
+   Messages
+============================= */
 .success-message {
   color: #388e3c;
   background: #e8f5e9;
@@ -174,6 +225,7 @@ h1 {
   border-radius: 6px;
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 500;
 }
 
 .error-message {
@@ -184,4 +236,5 @@ h1 {
   border-radius: 6px;
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 500;
 }

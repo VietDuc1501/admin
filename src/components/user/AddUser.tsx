@@ -94,7 +94,7 @@ const AddUser: React.FC = () => {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="user-password">Password:</label>
           <input
             type="password"
@@ -103,9 +103,9 @@ const AddUser: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
+        </div> */}
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="user-status">Status:</label>
           <select
             id="user-status"
@@ -115,7 +115,7 @@ const AddUser: React.FC = () => {
             <option value="ACTIVE">ACTIVE</option>
             <option value="INACTIVE">INACTIVE</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label htmlFor="user-role">Role:</label>
