@@ -103,7 +103,7 @@ const AddCourse: React.FC = () => {
           </select>
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="course-status">Status:</label>
           <select
             id="course-status"
@@ -113,7 +113,7 @@ const AddCourse: React.FC = () => {
             <option value="ACTIVE">ACTIVE</option>
             <option value="INACTIVE">INACTIVE</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label htmlFor="course-image">Image URL:</label>

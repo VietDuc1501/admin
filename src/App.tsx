@@ -12,6 +12,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import CourseManagementPage from "./pages/CourseManagementPage";
 import UserManagementPage from "./pages/UserManagementPage";
 import CategoryManagement from "./pages/CategoryManagement";
+import AddCategory from "./components/category/AddCategory";
+import EditCategory from "./components/category/EditCategory";
 
 // Auth
 import LoginForm from "./components/auth/LoginForm";
@@ -28,6 +30,40 @@ import EditUser from "./components/user/EditUser";
 
 import "./styles/App.css";
 
+import { useParams, useNavigate } from "react-router-dom";
+
+type EditCategoryProps = React.ComponentProps<typeof EditCategory>;
+
+const EditCategoryWrapper: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  // You may need to fetch the currentName based on id, here is a placeholder:
+  const currentName = ""; // TODO: Replace with actual category name fetching logic
+
+  const handleCancel = () => {
+    navigate("/CategoryManagement");
+  };
+
+  const handleSuccess = () => {
+    navigate("/CategoryManagement");
+  };
+
+  if (!id) return null;
+
+  return (
+    <EditCategory
+      id={id}
+      currentName={currentName}
+      onCancel={handleCancel}
+      onSuccess={handleSuccess}
+    />
+  );
+};
+<Route
+  path="/CategoryManagement/EditCategory/:id"
+  element={<EditCategoryWrapper />}
+/>;
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -65,6 +101,14 @@ const AppRoutes: React.FC = () => {
               <Route
                 path="/CategoryManagement"
                 element={<CategoryManagement />}
+              />
+              <Route
+                path="/CategoryManagement/AddCategory"
+                element={<AddCategory />}
+              />
+              <Route
+                path="/CategoryManagement/EditCategory/:id"
+                element={<EditCategoryWrapper />}
               />
 
               {/* Authentication */}
