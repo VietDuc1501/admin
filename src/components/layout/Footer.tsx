@@ -5,11 +5,11 @@ const Footer: React.FC = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
-                <p>&copy; 2023 Todo App. All rights reserved.</p>
+                {/* <p>&copy; 2023 Todo App. All rights reserved.</p> */}
                 <div className="footer-contact">
-                    <span>Contact: </span>
-                    <a href="mailto:"></a> |
-                    <a href="tel:" style={{ marginLeft: 8 }}></a>
+                    {/* <span>Contact: </span> */}
+                    {/* <a href="mailto:"></a> |
+                    <a href="tel:" style={{ marginLeft: 8 }}></a> */}
                 </div>
             </div>
         </footer>

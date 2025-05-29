@@ -1,20 +1,14 @@
-body {
-    background-color: #121212; /* hoặc #f0f2f5 tùy theme */
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-}
-
 /* Dashboard container */
 .dashboard {
     max-width: 480px;
     margin: 48px auto;
-    background: #f7faff;
+    background: #e3f2fd; /* xanh nhạt đồng bộ */
     border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+    box-shadow: 0 4px 24px rgba(25, 118, 210, 0.10);
     padding: 36px 32px;
     text-align: center;
+    /* border: 2px solid #1976d2;  Bỏ viền xanh */
 }
-
 /* Title styling */
 .dashboard-title {
     font-size: 2.2rem;
@@ -22,10 +16,8 @@ body {
     color: #1976d2;
     margin-bottom: 32px;
     letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    text-align: center;
+    display: block; /* Đảm bảo là block để không bị ẩn */
 }
 
 /* Navigation container */
