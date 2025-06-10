@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
 
 // Layout
 import Header from "./components/layout/Header";
@@ -23,23 +29,19 @@ import RegisterForm from "./components/auth/RegisterForm";
 import AddCourse from "./components/course/AddCourse";
 import EditCourse from "./components/course/EditCourse";
 import CourseLessons from "./components/lesson/CourseLessons";
-
+import CourseStudents from "./pages/CourseStudents";
 // User Management
 import AddUser from "./components/user/AddUser";
 import EditUser from "./components/user/EditUser";
 
 import "./styles/App.css";
 
-import { useParams, useNavigate } from "react-router-dom";
-
-type EditCategoryProps = React.ComponentProps<typeof EditCategory>;
-
 const EditCategoryWrapper: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // You may need to fetch the currentName based on id, here is a placeholder:
-  const currentName = ""; // TODO: Replace with actual category name fetching logic
+  // Placeholder logic for fetching category name
+  const currentName = ""; // TODO: Replace with actual fetch logic
 
   const handleCancel = () => {
     navigate("/CategoryManagement");
@@ -60,10 +62,7 @@ const EditCategoryWrapper: React.FC = () => {
     />
   );
 };
-<Route
-  path="/CategoryManagement/EditCategory/:id"
-  element={<EditCategoryWrapper />}
-/>;
+
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -90,6 +89,10 @@ const AppRoutes: React.FC = () => {
               <Route
                 path="/CourseLessons/:courseId"
                 element={<CourseLessons />}
+              />
+              <Route
+                path="/Admin/Course/:courseId/Students"
+                element={<CourseStudents />}
               />
 
               {/* User Management */}

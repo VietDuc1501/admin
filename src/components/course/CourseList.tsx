@@ -7,6 +7,7 @@ import DeleteCourse from "./DeleteCourse";
 import getAllCourses from "../../hooks/course/courseList";
 import getAllCategories from "../../hooks/category/categoriesCourse";
 import Category from "../../types/Category";
+
 interface CourseListProps {
   courses: Course[];
   onDelete?: (courseId: string) => void;
@@ -20,35 +21,33 @@ const CourseList: React.FC<CourseListProps> = ({ onDelete }) => {
   const [categories, setCategories] = useState<{ id: string; name: string }[]>(
     []
   );
-  useEffect(() => {
-    const fetchCourses = async () => {
-      const data = await getAllCourses();
-      setCourses(data);
-    };
-    fetchCourses();
-  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const coursesData = await getAllCourses();
       setCourses(coursesData);
       const categoriesData = await getAllCategories();
-      console.log("categoriesData:", categoriesData); // kiểm tra dữ liệu trả về
       const mappedCategories = categoriesData.map((cat: Category) => ({
         id: cat.id,
         name: (cat as any).name || (cat as any).categoryName || "",
       }));
-      console.log("mappedCategories:", mappedCategories); // kiểm tra dữ liệu đã map
       setCategories(mappedCategories);
     };
     fetchData();
   }, []);
-  // Chỉ chuyển trang, không fetch trước khi edit
+
   const handleEdit = (courseId: string) => {
     navigate(`/EditCourse/${courseId}`);
   };
+
   const handleViewLessons = (courseId: string) => {
     navigate(`/CourseLessons/${courseId}`);
   };
+
+  const handleViewStudents = (courseId: string) => {
+    navigate(`/Admin/Course/${courseId}/Students`);
+  };
+
   const handleDeleteCourse = async (id: string) => {
     const response = await deleteCourseById(id);
     if (response.ok) {
@@ -111,6 +110,11 @@ const CourseList: React.FC<CourseListProps> = ({ onDelete }) => {
                   className="edit-btn lesson-btn"
                   onClick={() => handleViewLessons(course.id)}>
                   Lessons
+                </button>
+                <button
+                  className="edit-btn"
+                  onClick={() => handleViewStudents(course.id)}>
+                  👥 Students
                 </button>
               </div>
             </li>
