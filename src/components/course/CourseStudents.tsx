@@ -3,25 +3,30 @@ import { useParams } from "react-router-dom";
 
 interface StudentDTO {
   userId: string;
-  userName: string;
-  userEmail: string;
-  status: string;
+  learnerName: string;
+  enrollmentDate: string;
 }
 
 const CourseStudents: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const [students, setStudents] = useState<StudentDTO[]>([]);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchStudents = async () => {
+      if (!courseId) return;
+
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/enrollments/course/${courseId}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/enrollments/course/${courseId}/enrollments`
         );
-        if (!res.ok) throw new Error("Failed to fetch students");
-        const data = await res.json();
+        if (!res.ok) {
+          throw new Error("Failed to fetch students");
+        }
+        const data: StudentDTO[] = await res.json();
         setStudents(data);
       } catch (err: any) {
         setError(err.message);
@@ -29,7 +34,8 @@ const CourseStudents: React.FC = () => {
         setLoading(false);
       }
     };
-    if (courseId) fetchStudents();
+
+    fetchStudents();
   }, [courseId]);
 
   return (
@@ -42,13 +48,11 @@ const CourseStudents: React.FC = () => {
         {students.map((student) => (
           <li key={student.userId} className="user-item">
             <p>
-              <strong>Name:</strong> {student.userName}
+              <strong>Name:</strong> {student.learnerName}
             </p>
             <p>
-              <strong>Email:</strong> {student.userEmail}
-            </p>
-            <p>
-              <strong>Status:</strong> {student.status}
+              <strong>Enrollment Date:</strong>{" "}
+              {new Date(student.enrollmentDate).toLocaleDateString("vi-VN")}
             </p>
           </li>
         ))}

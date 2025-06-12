@@ -8,7 +8,7 @@ const useUser = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch("`${import.meta.env.VITE_API_URL}/api/user"); // Đổi endpoint nếu cần
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/user`); // Đổi endpoint nếu cần
                 if (!response.ok) throw new Error("Failed to fetch users");
                 const data = await response.json();
                 setUsers(data as User[]);
