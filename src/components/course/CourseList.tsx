@@ -45,7 +45,7 @@ const CourseList: React.FC<CourseListProps> = ({ onDelete }) => {
   };
 
   const handleViewStudents = (courseId: string) => {
-    navigate(`/Admin/Course/${courseId}/Students`);
+    navigate(`/CourseStudents/${courseId}`);
   };
 
   const handleDeleteCourse = async (id: string) => {
@@ -114,7 +114,7 @@ const CourseList: React.FC<CourseListProps> = ({ onDelete }) => {
                 <button
                   className="edit-btn"
                   onClick={() => handleViewStudents(course.id)}>
-                  👥 Students
+                  Students
                 </button>
               </div>
             </li>

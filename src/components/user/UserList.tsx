@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import User from "../../types/User";
-import getAllUser from "../../hooks/user/userList";
 import getAllRoles from "../../hooks/role/RoleUser";
 import Role from "../../types/Role";
-import deleteUserById from "../../hooks/user/deleteUser";
 import DeleteUser from "./DeleteUser";
 
-const UserList: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+interface UserListProps {
+  users: User[];
+  onDelete: (id: string) => void;
+}
+
+const UserList: React.FC<UserListProps> = ({ users, onDelete }) => {
   const [roles, setRoles] = useState<Role[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData();
+    fetchRoles();
   }, []);
 
-  const fetchData = async () => {
+  const fetchRoles = async () => {
     setError("");
     try {
-      const [userData, roleData] = await Promise.all([
-        getAllUser(),
-        getAllRoles(),
-      ]);
-      setUsers(userData);
+      const roleData = await getAllRoles();
       setRoles(roleData);
     } catch (err) {
-      setError("❌ Failed to fetch users or roles.");
+      setError("❌ Failed to fetch roles.");
     }
   };
 
@@ -40,8 +38,7 @@ const UserList: React.FC = () => {
   const confirmDelete = async () => {
     if (!selectedUserId) return;
     try {
-      await deleteUserById(selectedUserId);
-      setUsers((prev) => prev.filter((u) => u.id !== selectedUserId));
+      await onDelete(selectedUserId);
       setSelectedUserId(null);
     } catch (err) {
       setError("❌ Error deleting user.");
@@ -74,12 +71,14 @@ const UserList: React.FC = () => {
               </p>
               <button
                 className="edit-btn"
-                onClick={() => navigate(`/edit-user/${user.id}`)}>
+                onClick={() => navigate(`/edit-user/${user.id}`)}
+              >
                 Edit
               </button>
               <button
                 className="delete-btn"
-                onClick={() => setSelectedUserId(user.id)}>
+                onClick={() => setSelectedUserId(user.id)}
+              >
                 Delete
               </button>
             </li>

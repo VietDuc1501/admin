@@ -37,7 +37,7 @@ const Header: React.FC = () => {
   const handleLogoutClick = () => {
     localStorage.removeItem("user"); // Xóa user khỏi localStorage (bao gồm token)
     setIsLoggedIn(false); // Cập nhật trạng thái đăng nhập
-    setUsername("");// Xóa username khỏi state
+    setUsername(""); // Xóa username khỏi state
     navigate("/login"); // Chuyển hướng về trang đăng nhập
   };
   return (
@@ -49,8 +49,7 @@ const Header: React.FC = () => {
             <span className="header-username">Xin chào {username}!</span>
             <button
               className="header-button logout-button"
-              onClick={handleLogoutClick}
-            >
+              onClick={handleLogoutClick}>
               Đăng xuất
             </button>
           </>
@@ -58,16 +57,14 @@ const Header: React.FC = () => {
           <>
             <button
               className="header-button login-button"
-              onClick={handleLoginClick}
-            >
+              onClick={handleLoginClick}>
               Đăng nhập
             </button>
-            <button
+            {/* <button
               className="header-button signup-button"
-              onClick={handleSignupClick}
-            >
+              onClick={handleSignupClick}>
               Đăng ký
-            </button>
+            </button> */}
           </>
         )}
       </div>

@@ -2,7 +2,7 @@ import NewUser from "../../types/NewUser";
 
 const createUserApi = async (user: NewUser): Promise<any> => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/user/create_id`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

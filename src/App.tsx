@@ -29,7 +29,7 @@ import RegisterForm from "./components/auth/RegisterForm";
 import AddCourse from "./components/course/AddCourse";
 import EditCourse from "./components/course/EditCourse";
 import CourseLessons from "./components/lesson/CourseLessons";
-import CourseStudents from "./pages/CourseStudents";
+import CourseStudents from "./components/course/CourseStudents";
 // User Management
 import AddUser from "./components/user/AddUser";
 import EditUser from "./components/user/EditUser";
@@ -91,7 +91,7 @@ const AppRoutes: React.FC = () => {
                 element={<CourseLessons />}
               />
               <Route
-                path="/Admin/Course/:courseId/Students"
+                path="/CourseStudents/:courseId"
                 element={<CourseStudents />}
               />
 
